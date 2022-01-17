@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kaubad>
+  <kaup>
+    <nimetus>Temperatuur</nimetus>
+    <hind>1000</hind>
+    <vaasta>2002</vaasta>
+    <kaubagrupp>
+      <gruppinimi>Mänguasi</gruppinimi>
+      <kirjeldus>Lapsele 0-10 aasta</kirjeldus>
+    </kaubagrupp>
+  </kaup>
+
+  <kaup>
+    <nimetus>Arvuti</nimetus>
+    <hind>1300</hind>
+    <vaasta>2016</vaasta>
+    <kaubagrupp>
+      <gruppinimi>Mänguasi</gruppinimi>
+      <kirjeldus>Lapsele 0-10 aasta</kirjeldus>
+    </kaubagrupp>
+  </kaup>
+
+  <kaup>
+    <nimetus>Nukk</nimetus>
+    <hind>2222</hind>
+    <vaasta>2010</vaasta>
+    <kaubagrupp>
+      <gruppinimi>Mänguasi</gruppinimi>
+      <kirjeldus>Lapsele 0-10 aasta</kirjeldus>
+    </kaubagrupp>
+  </kaup>
+
+  <kaup>
+    <nimetus>Auto</nimetus>
+    <hind>9991</hind>
+    <vaasta>1999</vaasta>
+    <kaubagrupp>
+      <gruppinimi>Mänguasi</gruppinimi>
+      <kirjeldus>Lapsele 0-10 aasta</kirjeldus>
+    </kaubagrupp>
+  </kaup>
+
+  <kaup>
+    <nimetus>Auto</nimetus>
+    <hind>1111</hind>
+    <vaasta>2222</vaasta>
+    <kaubagrupp>
+      <gruppinimi>Mänguasi</gruppinimi>
+      <kirjeldus>Lapsele 0-10 aasta</kirjeldus>
+    </kaubagrupp>
+  </kaup>
+
+  <kaup>
+    <nimetus>Auto</nimetus>
+    <hind>1000</hind>
+    <vaasta>2002</vaasta>
+    <kaubagrupp>
+      <gruppinimi>Mänguasi</gruppinimi>
+      <kirjeldus>Lapsele 0-10 aasta</kirjeldus>
+    </kaubagrupp>
+  </kaup>
+</kaubad>
