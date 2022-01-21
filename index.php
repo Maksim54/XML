@@ -5,10 +5,10 @@ $kaubad=simplexml_load_file("andmed.xml");
 function searchByName($query){
     global $kaubad;
     $result=array();
-    foreach ($kaubad->kaup as $kaup){
-        if(substr(strtolower($kaup->nimetus),0,strlen($query))==
+    foreach ($kaubad->ilma as $ilma){
+        if(substr(strtolower($ilma->temperatuur),0,strlen($query))==
         strtolower($query)){
-            array_push($result,$kaup);
+            array_push($result,$ilma);
         }
     }
     return $result;
@@ -16,22 +16,22 @@ function searchByName($query){
 
 //andmete lisamine xml-i
  if(isset($_POST['submit'])){
-    $nimi=$_POST['nimi'];
-    $hind=$_POST['hind'];
-    $aasta=$_POST['vaasta'];
-    $grupp=$_POST['grupp'];
+    $temperatuur=$_POST['temperatuur'];
+    $kuupaev=$_POST['kuupaev'];
+    $maakonnanimi=$_POST['mnimi'];
+    $maakonnakeskus=$_POST['mkeskus'];
 
-    $xml_kaubad=$kaubad->addChild('kaup');
-    $xml_kaubad->addChild('nimetus',$nimi);
+    $xml_kaubad=$kaubad->addChild('ilma');
+    $xml_kaubad->addChild('temperatuur',$temperatuur);
     //addchild ('xml struktuur',$nimi - teksti väli)
-    $xml_kaubad->addChild('hind',$hind);
-    $xml_kaubad->addChild('vaasta',$aasta);
+    $xml_kaubad->addChild('kuupaev',$kuupaev);
+    $xml_kaubad->addChild('maakonnanimi',$maakonnanimi);
     //$xml_kaubad->addChild('hind',$hind);
 
      // andmete lisamine <kaup><kaubagrupp> alla
 
-     $xml_kaubagrupp=$xml_kaubad->addChild('kaubagrupp');
-     $xml_kaubagrupp->addChild('grupinimi',$grupp);
+     $xml_maakonna=$xml_kaubad->addChild('maakonna');
+     $xml_maakonna->addChild('maakonnakeskus',$maakonnakeskus);
 
     $xmlDoc=new DOMDocument("1.0","UTF-8");
     $xmlDoc->loadXML($kaubad->asXML(),LIBXML_NOBLANKS);
@@ -56,6 +56,7 @@ function searchByName($query){
     <h1>
         XML failist andmed
     </h1>
+
     <form action="?" method="post">
         <label for="otsing">Otsing</label>
         <input type="text" name="otsing" id="otsing" placeholder="nimetus">
@@ -66,60 +67,57 @@ function searchByName($query){
     <?php
     if (!empty($_POST['otsing'])){
      $result=searchByName($_POST['otsing']);
-     foreach ($result as $kaup){
-        echo "<li>".$kaup->nimetus;
-        echo ", ".$kaup->vaasta."<li>";
-        echo ", ".$kaup->kaubagrupp->gruppinimi."<li>";
+     foreach ($result as $ilma){
+        echo "<li>".$ilma->temperatuur;
+        echo ", ".$ilma->kuupaev."<li>";
+        echo ", ".$ilma->maakonna->maakonnanimi."<li>";
      }
     }
     ?>
 
     <table>
         <tr>
-            <th>Kaubanimetus</th>
-            <th>Hind</th>
-            <th>Väljastamise aasta</th>
-            <th>Kaubagrupp</th>
-            <th>Kirjeldus</th>
+            <th>Temperatuur</th>
+            <th>Kuupäev</th>
+            <th>Maakonnanimi</th>
+            <th>Maakonnakeskus</th>
         </tr>
 
         <?php
-        foreach ($kaubad->kaup as $kaup){
+        foreach ($kaubad->ilma as $ilma){
             echo "<tr>";
-            echo "<td>".($kaup->nimetus)."</td>";
-            echo "<td>".($kaup->hind)."</td>";
-            echo "<td>".($kaup->vaasta)."</td>";
-            echo "<td>".($kaup->kaubagrupp->gruppinimi)."</td>";
-            echo "<td>".($kaup->kaubagrupp->kirjeldus)."</td>";
+            echo "<td>".($ilma->temperatuur)."</td>";
+            echo "<td>".($ilma->kuupaev)."</td>";
+            echo "<td>".($ilma->maakonna->maakonnanimi)."</td>";
+            echo "<td>".($ilma->maakonna->maakonnakeskus)."</td>";
             echo "</tr>";
         }
         ?>
 
     </table>
+    <section>
+        <img src="bullymaguire.gif">
+    </section>
 <h1>
     Andmete lisamine xml faili sisse
 </h1>
 <form action="" method="post">
     <table border="1">
         <tr>
-            <td><label for="nimi">Kauba nimetus</label></td>
-            <td><input type="text" id="nimi" name="text"></td>
+            <td><label for="temperatuur">Temperatuur</label></td>
+            <td><input type="number" id="temperatuur" name="temperatuur"></td>
         </tr>
         <tr>
-            <td><label for="hind">Hind</label></td>
-            <td><input type="text" id="hind" name="hind"></td>
+            <td><label for="kuupaev">Kuupäaev</label></td>
+            <td><input type="date" id="kuupaev" name="kuupaev"></td>
         </tr>
         <tr>
-            <td><label for="vaasta">Väljastamise aasta</label></td>
-            <td><input type="text" id="vaasta" name="vaasta"></td>
+            <td><label for="maakonnanimi">Makonnanimi</label></td>
+            <td><input type="text" id="maakonnanimi" name="maakonnanimi"></td>
         </tr>
         <tr>
-            <td><label for="grupp">Kauba grupp</label></td>
-            <td><input type="text" id="grupp" name="grupp"></td>
-        </tr>
-        <tr>
-            <td><label for="kirjeldus">Kirjeldus</label></td>
-            <td><input type="text" id="kirjeldus" name="kirjeldus"></td>
+            <td><label for="maakonnakeskus">Makonnakeskus</label></td>
+            <td><input type="text" id="maakonnakeskus" name="maakonnakeskus"></td>
         </tr>
         <tr>
             <td colspan="2">
